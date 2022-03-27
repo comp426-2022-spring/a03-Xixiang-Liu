@@ -71,7 +71,7 @@ function coinFlips(flips) {
  * @returns {{ heads: number, tails: number }}
  */
 
-function countFlips(array) {
+ function countFlips(array) {
   let h = 0;
   let t = 0;
   for( let i = 0; i < array.length; i++)
@@ -80,6 +80,10 @@ function countFlips(array) {
     else
       t++;
   const count = `{ tails: ${t}, heads: ${h} }` ;
+  if (h == 0)
+    count = `{ tails: ${t} }` ;
+  if (t == 0)
+    count = `{ heads: ${h} }` ;
   return count;
 }
 
