@@ -3,7 +3,9 @@ import minimist from 'minimist'; // parses argument options
 import express from 'express'; // minimal & flexible Node.js web application framework
 
 // Require Express.js
-const express = require('express')
+// const express = require('express')
+// Strange, this above line is in the instruction, but I need to delete it
+// Maybe ask later in the office hour
 const app = express()
 
 var argument = minimist(process.argv.slice(2))
