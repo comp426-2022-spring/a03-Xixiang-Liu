@@ -14,12 +14,22 @@
  * 
  */
 
-function coinFlip() {
-  let coin = Math.floor(2*Math.random());
-  if (coin == 0)
-    return "heads";
-  else
-    return "tails";
+function coinFlip(array) {
+  let heads = 0;
+  let tails = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i]=='heads') {
+      heads++;
+    } else if (array[i] == 'tails') {
+      tails++;
+    }
+  }
+  if (heads == 0) {
+    return {"tails": tails};
+  } else if (tails == 0) {
+    return {"heads": heads};
+  }
+  return {"heads": heads, "tails": tails};
 }
 
 /** Multiple coin flips
