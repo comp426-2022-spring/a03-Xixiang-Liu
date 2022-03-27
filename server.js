@@ -3,7 +3,7 @@ import minimist from 'minimist'; // parses argument options
 import express from 'express'; // minimal & flexible Node.js web application framework
 
 // Require Express.js
-//const express = require('express')
+const express = require('express')
 const app = express()
 
 var argument = minimist(process.argv.slice(2))
@@ -38,23 +38,12 @@ app.get('/app/flips/:number', (req, res) => {
     var flips = coinFlips(req.params.number)
     res.status(200).json({"raw" : flips, "summary" : countFlips(flips)})
 });
-/*
-app.get('/app/flips/:number', (req, res) => {
-    res.statusCode = 200;
-    var number = req.params.number;
-    let flips = coinFlips(number);
-    let summary = countFlips(flips);
-    res.json({raw: flips, summary: summary}) //json: way to transfer data
-                                                // like a dictionary, key-->string
-    res.writeHead(res.statusCode, {'Content-Type': 'application/json'});
-})
-*/
 
 // Endpoint that returns result of calling heads
 app.get('/app/flip/call/heads', (req, res) => {
     res.statusCode = 200;
     let answer = flipACoin('heads')
-    res.send(answer) //converts to plain text without using json
+    res.send(answer)
     res.writeHead(res.statusCode, {'Content-Type': 'text/plain'});
 })
 
