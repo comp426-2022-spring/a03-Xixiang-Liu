@@ -12,16 +12,14 @@ var argument = minimist(process.argv.slice(2))
 var name = 'port'
 const HTTP_PORT = argument[name] || 5000
 
-// Start an app server
+// Create my server
 const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
 // Check status code endpoint
 app.get('/app/', (req, res) => {
-    // Respond with status 200
     res.statusCode = 200;
-    // Respond with status message "OK"
     res.statusMessage = 'OK';
     res.writeHead(res.statusCode, { 'Content-Type' : 'text/plain'});
     res.end(res.statusCode+ ' ' +res.statusMessage)
@@ -41,7 +39,6 @@ app.get('/app/flips/:number', (req, res) => {
     res.status(200).json({"raw" : flips, "summary" : countFlips(flips)})
 });
 
-// Endpoint that returns result of calling heads
 app.get('/app/flip/call/heads', (req, res) => {
     res.statusCode = 200;
     let answer = flipACoin('heads')
@@ -49,7 +46,6 @@ app.get('/app/flip/call/heads', (req, res) => {
     res.writeHead(res.statusCode, {'Content-Type': 'text/plain'});
 })
 
-//Endpoint that returns the result of calling tails
 app.get('/app/flip/call/tails', (req, res) => {
     res.statusCode = 200;
     let answer = flipACoin('tails')
@@ -57,7 +53,7 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.writeHead(res.statusCode, {'Content-Type': 'text/plain'});
 })
 
-// Default response for any other request
+// If not recognized request (other requests)
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
 });
