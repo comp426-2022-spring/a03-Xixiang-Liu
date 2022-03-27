@@ -35,6 +35,11 @@ app.get('/app/flip/', (req, res) => {
 
 // Endpoint returning JSON of flip array & summary
 app.get('/app/flips/:number', (req, res) => {
+    var flips = coinFlips(req.params.number)
+    res.status(200).json({"raw" : flips, "summary" : countFlips(flips)})
+});
+/*
+app.get('/app/flips/:number', (req, res) => {
     res.statusCode = 200;
     var number = req.params.number;
     let flips = coinFlips(number);
@@ -43,6 +48,7 @@ app.get('/app/flips/:number', (req, res) => {
                                                 // like a dictionary, key-->string
     res.writeHead(res.statusCode, {'Content-Type': 'application/json'});
 })
+*/
 
 // Endpoint that returns result of calling heads
 app.get('/app/flip/call/heads', (req, res) => {
